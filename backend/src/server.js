@@ -1,6 +1,16 @@
 import express from 'express';
 import { ENV } from './lib/env.js';
 import path from 'path';
+import cors from "cors";
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://video-calling-interview-platform-us-delta.vercel.app/"
+  ],
+  credentials: true
+}));
+
 const app = express();
 
 
