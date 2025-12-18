@@ -2,6 +2,8 @@ import express from 'express';
 import { ENV } from './lib/env.js';
 import path from 'path';
 import cors from "cors";
+import { connect } from 'http2';
+import { connectDB } from './lib/db.js';
 
 
 const app = express();
@@ -24,9 +26,7 @@ app.get('/hii', (req, res) => {
   res.status(200).json({ msg: 'Server is running 12456 hii' });
 });
 
-app.listen(ENV.PORT, () => {
-  console.log(`Server is running on port ${ENV.PORT}`);
-});
+
 
 
 if(ENV.NODE_ENV === 'production'){
@@ -36,5 +36,20 @@ if(ENV.NODE_ENV === 'production'){
     res.sendFile(path.join(__dirname,'../frontend','dist','index.html'));
   });
 }
+
+
+const startServer = async () => { 
+  try {
+    await connectDB();
+    app.listen(ENV.PORT, () => {
+      console.log(`✅ Server is running on port ${ENV.PORT}`);
+    });
+}
+  catch (error) {
+    console.error('❌ Error  starting server', error);
+  }
+};
+
+startServer();
 console.log(ENV.PORT);
  
