@@ -6,10 +6,13 @@ import { inngest } from './lib/inngest.js';
 import { serve } from 'inngest/express';
 import { inngestFunctions as functions } from './lib/inngest.js';
 import { connectDB } from './lib/db.js';
+import  {clerkMiddleware} from '@clerk/express'
+import { protectRoute } from './middleware/protectRoute.js';
+import chatRoutes from './routes/chatRoutes.js';
 
 
 const app = express();
-
+const __dirname = path.resolve();
 //middleware
 app.use(express.json());
 app.use(cors({
@@ -21,16 +24,19 @@ app.use(cors({
 }));//credentials true allows browser to include cookies to be sent with requests
 
 
-const __dirname = path.resolve();
+app.use(clerkMiddleware({}));// This adds auth field to request object:req.auth()
 
 app.use("/api/inngest",serve({client:inngest,functions}))
 
-app.get('/hello', (req, res) => {
+app.use("/api/chat",chatRoutes);
+
+app.get('/health', (req, res) => {
   res.status(200).json({ msg: 'Server is running 12456' });
 });
-app.get('/hii', (req, res) => {
-  res.status(200).json({ msg: 'Server is running 12456 hii' });
-});
+
+app.get('/videocalls', protectRoute, (req, res) => {
+  res.status(200).json({ msg: 'This is a protected route' });
+});//When user accesses this route, first protectRoute middleware will run to check authentication
 
 
 
