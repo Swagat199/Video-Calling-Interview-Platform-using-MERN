@@ -9,13 +9,14 @@ function App() {
   
   const {isSignedIn,isLoaded} = useUser();
 
-  //if (!isLoaded) return null;
+  //this avoids flickering effect
+  if (!isLoaded) return null;
 
   return (
     <><Routes>
-      <Route path="/" element={!isSignedIn ? <HomePage/> : <Navigate to="/dashboard" />} />
-      <Route path="/dashboard" element={isSignedIn ? <DashboarPage/> : <Navigate to="/dashboard" />} />
-      <Route path="/problems" element={isSignedIn ? <ProblemsPage/> : <Navigate to="/" />} />
+      <Route path="/" element={!isSignedIn ? <HomePage/> : <Navigate to={"/dashboard"} />} />
+      <Route path="/dashboard" element={isSignedIn ? <DashboarPage/> : <Navigate to={"/"} />} />
+      <Route path="/problems" element={isSignedIn ? <ProblemsPage/> : <Navigate to={"/"} />} />
     </Routes>
 
     <Toaster position='bottom' toastDuration={4000}/>
