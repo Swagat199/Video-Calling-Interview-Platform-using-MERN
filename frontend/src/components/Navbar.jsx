@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router'
 function Navbar() {
 
     const location = useLocation();
-    console.log(location);
+    //console.log(location);
     
     const isActive = (path)=> location.pathname === path;
   return <nav className='bg-base-100/10 backdrop-blur-md border-b border-primary/20 sticky top-0 z-50 shadow-lg'>
