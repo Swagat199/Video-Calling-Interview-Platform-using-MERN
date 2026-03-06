@@ -6,10 +6,10 @@ import { createSession, getActiveSessions, getMyRecentSessions, getSessionById, 
 const router = express.Router();
 
 router.post('/',protectRoute,createSession);
-router.post('/active',protectRoute,getActiveSessions);
-router.post('/my-recent',protectRoute,getMyRecentSessions);
+router.get('/active',protectRoute,getActiveSessions);
+router.get('/my-recent',protectRoute,getMyRecentSessions);
 
-router.post('/:id',protectRoute,getSessionById);
+router.get('/:id',protectRoute,getSessionById);
 router.post('/:id/join',protectRoute,joinSession);
 router.post('/:id/end',protectRoute,endSession);
 
