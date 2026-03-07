@@ -36,10 +36,6 @@ app.get('/health', (req, res) => {
   res.status(200).json({ msg: 'Server is running 12456' });
 });
 
-app.get('/videocalls', protectRoute, (req, res) => {
-  res.status(200).json({ msg: 'This is a protected route' });
-});//When user accesses this route, first protectRoute middleware will run to check authentication
-
 
 
 

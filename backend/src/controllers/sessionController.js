@@ -155,7 +155,7 @@ export async function endSession(req, res) {
     }
 
     // check if session is already completed
-    if (session.status === "completed") {
+    if (session.status === "Completed") {
       return res.status(400).json({ message: "Session is already completed" });
     }
 
@@ -167,7 +167,7 @@ export async function endSession(req, res) {
     const channel = chatClient.channel("messaging", session.callId);
     await channel.delete();
 
-    session.status = "completed";
+    session.status = "Completed";
     await session.save();
 
     res.status(200).json({ session, message: "Session ended successfully" });
