@@ -19,11 +19,10 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://video-calling-interview-platform-us.vercel.app/"
+    "https://video-calling-interview-platform-us.vercel.app"
   ],
   credentials: true
 }));//credentials true allows browser to include cookies to be sent with requests
-
 
 app.use(clerkMiddleware({}));// This adds auth field to request object:req.auth()
 
