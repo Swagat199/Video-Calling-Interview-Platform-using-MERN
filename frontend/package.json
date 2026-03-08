@@ -25,8 +25,7 @@
     "react-resizable-panels": "^3.0.6",
     "react-router": "^7.9.4",
     "stream-chat": "^9.23.0",
-    "stream-chat-react": "^13.9.0",
-    "video-calling-interview-platform": "file:.."
+    "stream-chat-react": "^13.9.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

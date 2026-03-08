@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://video-calling-interview-platform-us.vercel.app"
+    "https://69ad1a95177d678d5e0acd2d--lucky-treacle-dbe779.netlify.app/",
   ],
   credentials: true
 }));//credentials true allows browser to include cookies to be sent with requests
@@ -61,4 +61,3 @@ const startServer = async () => {
 
 startServer();
 console.log(ENV.PORT);
- 
