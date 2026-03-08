@@ -30,7 +30,8 @@ app.use(cors({
     if (
       !origin ||
       origin.includes("localhost") ||
-      origin.includes("netlify.app")
+      origin.includes("netlify.app")||
+      origin.includes("vercel.app")
     ) {
       callback(null, true);
     } else {
