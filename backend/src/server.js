@@ -31,7 +31,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.options('*', cors());
+app.options('/*', cors());
 app.use(clerkMiddleware({}));// This adds auth field to request object:req.auth()
 
 app.use("/api/inngest",serve({client:inngest,functions}))
