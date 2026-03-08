@@ -19,11 +19,19 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://69ad1a95177d678d5e0acd2d--lucky-treacle-dbe779.netlify.app/",
+    "https://69ad1a95177d678d5e0acd2d--lucky-treacle-dbe779.netlify.app",
   ],
   credentials: true
 }));//credentials true allows browser to include cookies to be sent with requests
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://69ad1a95177d678d5e0acd2d--lucky-treacle-dbe779.netlify.app"
+  ],
+  credentials: true
+}));
 
+app.options('*', cors());
 app.use(clerkMiddleware({}));// This adds auth field to request object:req.auth()
 
 app.use("/api/inngest",serve({client:inngest,functions}))
